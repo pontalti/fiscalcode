@@ -1,0 +1,17 @@
+version: '3'
+services:
+    fiscalcode:
+        build:
+            dockerfile: ./app.dockerfile
+            context: .
+        image: pontalti/fiscalcode
+        container_name: fiscal-code
+        ports:
+          - "8080:8080"
+          - "8000:8000"
+        networks: 
+            - production-network
+            
+networks: 
+    production-network:
+        driver: bridge
