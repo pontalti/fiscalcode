@@ -73,9 +73,9 @@
 		- ``` mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8000" ```
 	- OR
 		- ``` java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000 -jar target\fiscalcode-0.0.1.jar ```
-		- To use the Spring dev tools features please configure the -> ``` Spring Boot Remote ```
-			- ``` Remote URL -> http://localhost:8080/ ```
-			- ``` Remote Secrete -> teste ```
+	- To use the Spring dev tools features please configure the -> ``` Spring Boot Remote ```
+		- Remote URL -> ``` http://localhost:8080/ ```
+		- Remote Secret -> ``` teste ```
 
 13. To run the SpringBoot application with Docker.
 	- Please install Docker.
@@ -86,8 +86,8 @@
 	- To check the log, please run the command below.
 		- ``` docker logs -f fiscal-code ```
 	- To use the Spring dev tools features please configure the -> ``` Spring Boot Remote ```
-		- ``` Remote URL -> http://localhost:8080/ ```
-		- ``` Remote Secrete -> teste ```
+		- Remote URL -> ``` http://localhost:8080/ ```
+		- Remote Secret -> ``` teste ```
 		
 14. if necessary install curl on Windows or Linux.
 	- for Windows -> ``` choco install curl ```
