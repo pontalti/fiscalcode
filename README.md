@@ -86,8 +86,8 @@
 	- To check the log, please run the command below.
 		- ``` docker logs -f fiscal-code ```
 	- To use the Spring dev tools features please configure the -> ``` Spring Boot Remote ```
-			- ``` Remote URL -> http://localhost:8080/ ```
-			- ``` Remote Secrete -> teste ```
+		- ``` Remote URL -> http://localhost:8080/ ```
+		- ``` Remote Secrete -> teste ```
 		
 14. if necessary install curl on Windows or Linux.
 	- for Windows -> ``` choco install curl ```
