@@ -110,11 +110,11 @@
 	- Copy and past the json below
 		``` 
 		{
-		    "name": "Gustavo Valentim",
-		    "surname": "Pontalti",
+		    "name": "Edmundo",
+		    "surname": "Souza",
 		    "dateOfBirth": "27/01/1983",
-		    "placeOfBirth": "BRASILE",
-		    "gender": "M",
+		    "placeOfBirth": "TRENTO",
+		    "gender": "TN",
 		    "state": "EE"
 		}
 		```
@@ -127,7 +127,7 @@
 	- In the body section choose -> ``` RAW ```
 	- In the body section select -> ``` JSON in the drop list ```
 	- Copy and past the json below.
-		- ```{"taxCode": "PNTGTV83A27Z602C"}```
+		- ```{"taxCode": "SZODND83A27L378E"}```
 
 19. To access the OpenAPI definition, please use the link below
 	- ``` http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/ ``` 
