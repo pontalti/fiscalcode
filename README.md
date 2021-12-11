@@ -114,8 +114,8 @@
 		    "surname": "Souza",
 		    "dateOfBirth": "27/01/1983",
 		    "placeOfBirth": "TRENTO",
-		    "gender": "TN",
-		    "state": "EE"
+		    "gender": "M",
+		    "state": "TN"
 		}
 		```
 		
