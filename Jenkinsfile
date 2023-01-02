@@ -23,18 +23,25 @@ pipeline {
     stage('Run maven') {
       steps {
         container('maven') {
-        /*
+        	/**
         	sh 'apt-get update'
         	sh 'apt-get install git -y'
         	sh 'mvn clean package'
+        	*/
         	sh 'pwd'
-        */
         }
       }
     }
     stage('Docker registry'){
       steps {
-      		sh 'docker version'
+      	container('docker'){
+      		//sh 'apt-get update'
+      		//sh 'apt-get install service -y'
+      		
+      		//sh 'service docker start'
+			//sh 'docker version'
+			sh 'ls -la /var/run/docker.sock'
+		}
       }
     }
   }
