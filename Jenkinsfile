@@ -23,9 +23,11 @@ pipeline {
     stage('Run maven') {
       steps {
         container('maven') {
+        	/**
         	sh 'apt-get update'
         	sh 'apt-get install git -y'
         	sh 'mvn clean package'
+        	*/
         	sh 'pwd'
         }
       }
@@ -33,6 +35,7 @@ pipeline {
     stage('Docker registry'){
       steps {
       	container('docker'){
+      		sh 'service docker start'
 			sh 'docker version'
 		}
       }
