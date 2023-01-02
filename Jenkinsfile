@@ -10,8 +10,8 @@ pipeline {
             image: maven:3.8.4-openjdk-17-slim
             command:
             - cat
-            - apt-get update
-            - apt-get install git -y
+              apt-get update
+              apt-get install git -y
             tty: true
         '''
     }
