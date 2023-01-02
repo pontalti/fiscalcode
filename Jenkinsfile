@@ -38,8 +38,11 @@ pipeline {
       	container('docker'){
   			//sh 'docker version'
 	  		//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-  			//sh 'docker push pontalti/fiscalcode:latest'  
-  			docker.build("pontalti:fiscalcode:latest")    	    
+  			//sh 'docker push pontalti/fiscalcode:latest' 
+  			script{
+	  			docker.build("pontalti:fiscalcode:latest")
+  			}
+ 
       	}
       }
     }
