@@ -19,27 +19,31 @@ pipeline {
         '''
     }
   }
-  stages {
-    stage('Run maven') {
-      steps {
-        container('maven') {
-        	/**
-        	sh 'apt-get update'
-        	sh 'apt-get install git -y'
-        	sh 'mvn clean package'
-        	*/
-        	sh 'pwd'
-        }
-      }
-    }
-    stage('Docker registry'){
-      steps {
-      	step{
-      	    dockerImage = docker.build("pontalti/fiscalcode:1.0")  	
-      	    
-      	}
-
-      }
-    }
+  node{
+	  stages {
+	    stage('Run maven') {
+	      steps {
+	        container('maven') {
+	        	/**
+	        	sh 'apt-get update'
+	        	sh 'apt-get install git -y'
+	        	sh 'mvn clean package'
+	        	*/
+	        	sh 'pwd'
+	        }
+	      }
+	    }
+	    stage('Docker registry'){
+	      steps {
+	      	step('teste'){
+	      	    dockerImage = docker.build("pontalti/fiscalcode:1.0")  	
+	      	    
+	      	}
+	
+	      }
+	    }
+	  }
+      
   }
+
 }
