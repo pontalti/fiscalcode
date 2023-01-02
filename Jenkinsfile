@@ -35,9 +35,6 @@ pipeline {
     stage('Build image'){
       steps {
       	dockerImage = docker.build("pontalti/fiscalcode:1.0")
-      	withDockerRegistry([ credentialsId: "Docker-user", url: "" ]) {
-        	dockerImage.push()
-        }
       }
     }
   }
