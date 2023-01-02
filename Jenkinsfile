@@ -35,7 +35,7 @@ pipeline {
     stage('Docker registry'){
       steps {    		
       	container('docker'){
-       		dockerImage = docker.build("monishavasu/my-react-app:latest")
+        	sh 'pwd'      	
 		}
       }
     }
