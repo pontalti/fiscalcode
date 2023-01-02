@@ -34,11 +34,10 @@ pipeline {
     }
     stage('Docker registry'){
       steps {
-      	container('docker'){
+      	container('maven'){
       		sh 'apt-get update'
-      		sh 'apt-get install service -y'
-      		sh 'service docker start'
-			sh 'docker version'
+      		sh 'apt-get install docker -y'
+      		sh 'docker version'
 		}
       }
     }
