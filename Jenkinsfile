@@ -28,7 +28,7 @@ pipeline {
         container('maven') {
         	sh 'apt-get update'
         	sh 'apt-get install git -y'
-        	sh 'mvn clean package'
+        	sh 'mvn clean package -DskipTests'
         	sh 'pwd'
         }
       }
@@ -37,9 +37,9 @@ pipeline {
       steps {
       	container('docker'){
   			//sh 'docker version'
-	  		sh 'docker build -t pontalti/fiscalcode:latest .'
-  			//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-  			//sh 'docker push pontalti/fiscalcode:latest'      	    
+	  		//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+  			//sh 'docker push pontalti/fiscalcode:latest'  
+  			docker.build("pontalti:fiscalcode:latest")    	    
       	}
       }
     }
