@@ -12,7 +12,7 @@ pipeline {
             - cat
             tty: true
           - name: docker
-            image: docker:rc-dind
+            image: docker:23.0.0-rc.1-alpine3.17
             command:
             - cat
             tty: true
@@ -26,9 +26,9 @@ pipeline {
     stage('Run maven') {
       steps {
         container('maven') {
-        	sh 'apt-get update'
-        	sh 'apt-get install git -y'
-        	sh 'mvn clean package'
+        	//sh 'apt-get update'
+        	//sh 'apt-get install git -y'
+        	//sh 'mvn clean package'
         	sh 'pwd'
         }
       }
@@ -36,7 +36,7 @@ pipeline {
     stage('Docker registry'){
       steps {
       		container('maven') {
-      			sh 'docker version'
+      			sh 'docker version]'
 		  		sh 'docker build -t pontalti/fiscalcode:latest .'
 	  			//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 	  			//sh 'docker push pontalti/fiscalcode:latest'
