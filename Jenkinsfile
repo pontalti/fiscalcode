@@ -35,6 +35,8 @@ pipeline {
     stage('Docker registry'){
       steps {
       	container('docker'){
+      		sh 'apt-get update'
+      		sh 'apt-get install service -y'
       		sh 'service docker start'
 			sh 'docker version'
 		}
