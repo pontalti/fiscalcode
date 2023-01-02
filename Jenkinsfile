@@ -19,7 +19,7 @@ pipeline {
       steps {
         container('maven') {
         	sh 'apt-get update'
-        	sh 'apt-get add git'
+        	sh 'apt-get install git'
         	sh 'mvn clean package'
         }
       }
