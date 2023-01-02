@@ -21,6 +21,7 @@ pipeline {
         	sh 'apt-get update'
         	sh 'apt-get install git -y'
         	sh 'mvn clean package'
+        	sh 'ls'
         }
       }
     }
