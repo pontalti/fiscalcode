@@ -34,7 +34,11 @@ pipeline {
     }
     stage('Docker registry'){
       steps {
+      	step{
       	    dockerImage = docker.build("pontalti/fiscalcode:1.0")  	
+      	    
+      	}
+
       }
     }
   }
