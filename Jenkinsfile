@@ -10,6 +10,10 @@ pipeline {
             image: maven:3.8.4-openjdk-17-slim
             command:
             - cat
+          - name: docker
+          	image: docker:rc-git
+          	command:
+            - cat
             tty: true
         '''
     }
@@ -21,9 +25,15 @@ pipeline {
         	sh 'apt-get update'
         	sh 'apt-get install git -y'
         	sh 'mvn clean package'
-        	sh 'ls'
         	sh 'pwd'
         }
+      }
+    }
+    stage('Docker registry'){
+      steps {
+      	container('docker'){
+			sh 'docker version'
+		}
       }
     }
   }
