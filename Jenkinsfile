@@ -20,6 +20,7 @@ pipeline {
         container('maven') {
         	sh 'apt-get update'
         	sh 'apt-get install git -y'
+        	sh 'source ~/.bashrc'
         	sh 'mvn clean package'
         }
       }
