@@ -10,6 +10,7 @@ pipeline {
             image: maven:3.8.4-openjdk-17-slim
             command:
             - cat
+            tty: true
           - name: docker
           	image: docker:rc-git
           	command:
