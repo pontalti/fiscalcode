@@ -19,31 +19,25 @@ pipeline {
         '''
     }
   }
-  node{
-	  stages {
-	    stage('Run maven') {
-	      steps {
-	        container('maven') {
-	        	/**
-	        	sh 'apt-get update'
-	        	sh 'apt-get install git -y'
-	        	sh 'mvn clean package'
-	        	*/
-	        	sh 'pwd'
-	        }
-	      }
-	    }
-	    stage('Docker registry'){
-	      steps {
-	      	step('teste'){
-	      	    dockerImage = docker.build("pontalti/fiscalcode:1.0")  	
-	      	    
-	      	}
-	
-	      }
-	    }
-	  }
-      
+  stages {
+    stage('Run maven') {
+      steps {
+        container('maven') {
+        	/**
+        	sh 'apt-get update'
+        	sh 'apt-get install git -y'
+        	sh 'mvn clean package'
+        	*/
+        	sh 'pwd'
+        }
+      }
+    }
+    stage('Docker registry'){
+      steps {    		
+      	container('docker'){
+       		dockerImage = docker.build("monishavasu/my-react-app:latest")
+		}
+      }
+    }
   }
-
 }
