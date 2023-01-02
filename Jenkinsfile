@@ -12,7 +12,7 @@ pipeline {
             - cat
             tty: true
           - name: docker
-            image: docker:rc-git
+            image: docker:rc-dind
             command:
             - cat
             tty: true
@@ -34,10 +34,13 @@ pipeline {
       }
     }
     stage('Docker registry'){
-      steps {    		
-	  		sh 'docker build -t pontalti/fiscalcode:latest .'
-	  		//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-	  		//sh 'docker push pontalti/fiscalcode:latest'
+      steps {
+      		container('maven') {
+      			sh 'docker version'
+		  		sh 'docker build -t pontalti/fiscalcode:latest .'
+	  			//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+	  			//sh 'docker push pontalti/fiscalcode:latest'
+      		}	
       }
     }
   }
