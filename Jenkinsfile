@@ -11,9 +11,9 @@ pipeline {
             command:
             - cat
             tty: true
-          - name: docker
-          	image: docker:rc-git
-          	command:
+            - name: docker
+            image: docker:rc-git
+            command:
             - cat
             tty: true
         '''
