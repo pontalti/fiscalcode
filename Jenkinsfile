@@ -35,7 +35,7 @@ pipeline {
     }
     stage('Docker registry'){
       steps {
-      	container('docker'){
+      	//container('docker'){
   			//sh 'docker version'
 	  		//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
   			//sh 'docker push pontalti/fiscalcode:latest' 
@@ -43,7 +43,7 @@ pipeline {
 	  			docker.build("pontalti/fiscalcode:latest")
   			}
  
-      	}
+      	//}
       }
     }
   }
