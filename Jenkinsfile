@@ -19,6 +19,9 @@ pipeline {
         '''
     }
   }
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('Docker-user')
+	}
   stages {
     stage('Run maven') {
       steps {
