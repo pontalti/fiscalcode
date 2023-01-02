@@ -32,16 +32,12 @@ pipeline {
         }
       }
     }
-    stage('Docker registry'){
+    stage('Build image'){
       steps {
-      	container('docker'){
-      		//sh 'apt-get update'
-      		//sh 'apt-get install service -y'
-      		
-      		//sh 'service docker start'
-			//sh 'docker version'
-			sh 'ls -la /var/run/docker.sock'
-		}
+      	dockerImage = docker.build("pontalti/fiscalcode:1.0")
+      	withDockerRegistry([ credentialsId: "Docker-user", url: "" ]) {
+        	dockerImage.push()
+        }
       }
     }
   }
