@@ -18,8 +18,8 @@ pipeline {
     stage('Run maven') {
       steps {
         container('maven') {
-        	sh 'apk update'
-        	sh 'apk add git'
+        	sh 'apt-get update'
+        	sh 'apt-get add git'
         	sh 'mvn clean package'
         }
       }
