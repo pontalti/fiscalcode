@@ -22,6 +22,7 @@ pipeline {
         	sh 'apt-get install git -y'
         	sh 'mvn clean package'
         	sh 'ls'
+        	sh 'pwd'
         }
       }
     }
