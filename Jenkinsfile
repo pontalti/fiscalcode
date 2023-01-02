@@ -10,8 +10,6 @@ pipeline {
             image: maven:3.8.4-openjdk-17-slim
             command:
             - cat
-              apt-get update
-              apt-get install git -y
             tty: true
         '''
     }
@@ -20,6 +18,8 @@ pipeline {
     stage('Run maven') {
       steps {
         container('maven') {
+        	sh 'apt-get update'
+        	sh 'apt-get install git -y'
         	sh 'mvn clean package'
         }
       }
