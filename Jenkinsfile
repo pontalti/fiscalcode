@@ -19,13 +19,11 @@ pipeline {
         '''
     }
   }
-/*
-	environment {
-		DOCKERHUB_CREDENTIALS=credentials('Docker-user')
-	}
-*/
+  environment {
+  	DOCKERHUB_CREDENTIALS=credentials('Docker-user')
+  }
   stages {
-    stage('Run maven') {
+    stage('Maven build and package') {
       steps {
         container('devops') {
         	sh 'mvn clean package -DskipTests'
@@ -33,8 +31,7 @@ pipeline {
         }
       }
     }
-    /*
-    stage('Docker registry'){
+    stage('Docker'){
       steps {
       	container('docker'){
   			script{
@@ -43,6 +40,5 @@ pipeline {
       	}
       }
     }
-    */
   }
 }
