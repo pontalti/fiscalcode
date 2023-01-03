@@ -6,8 +6,8 @@ pipeline {
         kind: Pod
         spec:
           containers:
-          - name: maven
-            image: maven:3.8.4-openjdk-17-slim
+          - name: devops
+            image: pontalti/devops:0.1
             command:
             - cat
             tty: true
@@ -25,26 +25,22 @@ pipeline {
   stages {
     stage('Run maven') {
       steps {
-        container('maven') {
-        	sh 'apt-get update'
-        	sh 'apt-get install git -y'
+        container('devops') {
         	sh 'mvn clean package -DskipTests'
         	sh 'pwd'
         }
       }
     }
+    /**
     stage('Docker registry'){
       steps {
       	container('docker'){
-  			//sh 'docker version'
-	  		//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-  			//sh 'docker push pontalti/fiscalcode:latest' 
   			script{
 	  			docker.build("pontalti/fiscalcode:latest")
   			}
- 
       	}
       }
     }
+    */
   }
 }
