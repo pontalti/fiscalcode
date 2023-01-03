@@ -19,9 +19,11 @@ pipeline {
         '''
     }
   }
+/*
 	environment {
 		DOCKERHUB_CREDENTIALS=credentials('Docker-user')
 	}
+*/
   stages {
     stage('Run maven') {
       steps {
@@ -31,7 +33,7 @@ pipeline {
         }
       }
     }
-    /**
+    /*
     stage('Docker registry'){
       steps {
       	container('docker'){
