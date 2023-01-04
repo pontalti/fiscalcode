@@ -12,7 +12,7 @@ pipeline {
             - cat
             tty: true
           - name: docker
-            image: docker:23.0.0-rc.1-alpine3.17
+            image: docker:dind
             command:
             - cat
             tty: true
@@ -35,7 +35,8 @@ pipeline {
       steps {
       	container('docker'){
   			script{
-	  			docker.build("pontalti/fiscalcode:latest")
+  				sh 'docker version'
+	  			//docker.build("pontalti/fiscalcode:latest")
   			}
       	}
       }
