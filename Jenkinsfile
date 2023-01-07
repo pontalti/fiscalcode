@@ -21,31 +21,33 @@ pipeline {
     }
   }
   **/
-  environment {
-  	DOCKERHUB_CREDENTIALS=credentials('Docker-user')
-  }
-  stages {
-    stage('Maven build and package') {
-      steps {
+	environment {
+  		DOCKERHUB_CREDENTIALS=credentials('Docker-user')
+	}
+	node('jenkins-slave') {
+		stages {
+			stage('Maven build and package') {
+      			steps {
       /**
-        container('devops') {
-        	sh 'mvn clean package -DskipTests'
-        	sh 'pwd'
-        }
+	        		container('devops') {
+	        			sh 'mvn clean package -DskipTests'
+	        			sh 'pwd'
+        			}
         */
-      }
-    }
-    stage('Docker'){
-      steps {
+      			}
+    		}
+			stage('Docker'){
+  				steps {
       /**
-      	container('docker'){
-  			script{
-  				sh 'docker version'
-	  			docker.build("pontalti/fiscalcode:latest")
-  			}
-      	}
+						container('docker'){
+							script{
+								sh 'docker version'
+	  							docker.build("pontalti/fiscalcode:latest")
+							}
+  						}
       	**/
-      }
-    }
-  }
+  				}
+			}
+		}
+	}
 }
