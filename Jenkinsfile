@@ -33,7 +33,6 @@ pipeline {
       steps {
       	container('devops') {
 			script{
-				sh 'docker version'
 	  			dockerImage = docker.build imageName
 	  			docker.build("pontalti/fiscalcode:latest")
 				docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
