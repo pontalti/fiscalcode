@@ -11,16 +11,14 @@ pipeline {
             command:
             - cat
             tty: true
-          - name: docker
-            image: pontalti/docker:latest
-            command:
-            - cat
-            tty: true
         '''
     }
   }
   environment {
   	DOCKERHUB_CREDENTIALS=credentials('Docker-user')
+  	imagename = 'pontalti/fiscalcode'
+  	registryCredential = 'Docker-user'
+    dockerImage = ''
   }
   stages {
     stage('Maven build and package') {
@@ -36,7 +34,12 @@ pipeline {
       	container('docker'){
   			script{
   				sh 'docker version'
-	  			//docker.build("pontalti/fiscalcode:latest")
+	  			dockerImage = docker.build imagename
+	  			docker.build("pontalti/fiscalcode:latest")
+  				docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
+            		dockerImage.push("$BUILD_NUMBER")
+             		dockerImage.push('latest')
+          		}
   			}
       	}
       }
