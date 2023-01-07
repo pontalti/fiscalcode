@@ -25,11 +25,20 @@ pipeline {
   stages {
     stage('Maven build and package') {
       steps {
-        container('docker') {
+        container('devops') {
         	sh 'mvn clean package -DskipTests'
         	sh 'pwd'
-        	sh 'docker version'
         }
+      }
+    }
+    stage('Docker'){
+      steps {
+      	container('docker'){
+  			script{
+  				sh 'docker version'
+	  			//docker.build("pontalti/fiscalcode:latest")
+  			}
+      	}
       }
     }
   }
