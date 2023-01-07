@@ -12,7 +12,7 @@ pipeline {
             - cat
             tty: true
           - name: docker
-            image: docker:dind
+            image: pontalti/docker:latest
             command:
             - cat
             tty: true
