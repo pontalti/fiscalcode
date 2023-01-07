@@ -30,15 +30,16 @@ pipeline {
       }
     }
     stage('Docker'){
-    agent any
       steps {
-		script{
-			sh 'docker version'
-  			dockerImage = docker.build imageName
-  			docker.build("pontalti/fiscalcode:latest")
-			docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
-        		dockerImage.push("$BUILD_NUMBER")
-         		dockerImage.push('latest')
+      	container('devops') {
+			script{
+				sh 'docker version'
+	  			dockerImage = docker.build imageName
+	  			docker.build("pontalti/fiscalcode:latest")
+				docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
+	        		dockerImage.push("$BUILD_NUMBER")
+	         		dockerImage.push('latest')
+	      		}
       		}
 		}
       }
