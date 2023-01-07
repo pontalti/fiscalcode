@@ -16,7 +16,7 @@ pipeline {
   }
   environment {
   	DOCKERHUB_CREDENTIALS=credentials('Docker-user')
-  	imagename = 'pontalti/fiscalcode'
+  	imageName = 'pontalti/fiscalcode'
   	registryCredential = 'Docker-user'
     dockerImage = ''
   }
@@ -30,10 +30,11 @@ pipeline {
       }
     }
     stage('Docker'){
+    agent any
       steps {
 		script{
 			sh 'docker version'
-  			dockerImage = docker.build imagename
+  			dockerImage = docker.build imageName
   			docker.build("pontalti/fiscalcode:latest")
 			docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
         		dockerImage.push("$BUILD_NUMBER")
