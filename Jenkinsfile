@@ -1,4 +1,5 @@
 pipeline {
+/**
   agent {
     kubernetes {
       yaml '''
@@ -19,26 +20,31 @@ pipeline {
         '''
     }
   }
+  **/
   environment {
   	DOCKERHUB_CREDENTIALS=credentials('Docker-user')
   }
   stages {
     stage('Maven build and package') {
       steps {
+      /**
         container('devops') {
         	sh 'mvn clean package -DskipTests'
         	sh 'pwd'
         }
+        */
       }
     }
     stage('Docker'){
       steps {
+      /**
       	container('docker'){
   			script{
   				sh 'docker version'
-	  			//docker.build("pontalti/fiscalcode:latest")
+	  			docker.build("pontalti/fiscalcode:latest")
   			}
       	}
+      	**/
       }
     }
   }
