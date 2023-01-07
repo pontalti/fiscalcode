@@ -33,11 +33,14 @@ pipeline {
       steps {
       	container('devops') {
 			script{
+				sh 'docker version'
+				/**
 	  			dockerImage = docker.build imageName
 				docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
 	        		dockerImage.push("$BUILD_NUMBER")
 	         		dockerImage.push('latest')
 	      		}
+	      		*/
       		}
 		}
       }
