@@ -34,7 +34,6 @@ pipeline {
       	container('devops') {
 			script{
 	  			dockerImage = docker.build imageName
-	  			docker.build("pontalti/fiscalcode:latest")
 				docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
 	        		dockerImage.push("$BUILD_NUMBER")
 	         		dockerImage.push('latest')
