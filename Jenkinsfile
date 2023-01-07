@@ -1,53 +1,24 @@
 pipeline {
-/**
-  agent {
-    kubernetes {
-      yaml '''
-        apiVersion: v1
-        kind: Pod
-        spec:
-          containers:
-          - name: devops
-            image: pontalti/devops:0.1
-            command:
-            - cat
-            tty: true
-          - name: docker
-            image: docker:dind
-            command:
-            - cat
-            tty: true
-        '''
+  environment {
+  	DOCKERHUB_CREDENTIALS=credentials('Docker-user')
+  }
+  stages {
+	node('jenkins-slave') {
+    stage('Maven build and package') {
+      steps {
+        
+        	sh 'mvn clean package -DskipTests'
+        	sh 'pwd'
+      }
+    }
+    stage('Docker'){
+      steps {
+  			script{
+  				sh 'docker version'
+	  			//docker.build("pontalti/fiscalcode:latest")
+  			}
+      }
+    }
     }
   }
-  **/
-	environment {
-  		DOCKERHUB_CREDENTIALS=credentials('Docker-user')
-	}
-	node('jenkins-slave') {
-		stages {
-			stage('Maven build and package') {
-      			steps {
-      /**
-	        		container('devops') {
-	        			sh 'mvn clean package -DskipTests'
-	        			sh 'pwd'
-        			}
-        */
-      			}
-    		}
-			stage('Docker'){
-  				steps {
-      /**
-						container('docker'){
-							script{
-								sh 'docker version'
-	  							docker.build("pontalti/fiscalcode:latest")
-							}
-  						}
-      	**/
-  				}
-			}
-		}
-	}
 }
