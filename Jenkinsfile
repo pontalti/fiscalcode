@@ -31,17 +31,15 @@ pipeline {
     }
     stage('Docker'){
       steps {
-      	container('docker'){
-  			script{
-  				sh 'docker version'
-	  			dockerImage = docker.build imagename
-	  			docker.build("pontalti/fiscalcode:latest")
-  				docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
-            		dockerImage.push("$BUILD_NUMBER")
-             		dockerImage.push('latest')
-          		}
-  			}
-      	}
+		script{
+			sh 'docker version'
+  			dockerImage = docker.build imagename
+  			docker.build("pontalti/fiscalcode:latest")
+			docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
+        		dockerImage.push("$BUILD_NUMBER")
+         		dockerImage.push('latest')
+      		}
+		}
       }
     }
   }
