@@ -1,24 +1,10 @@
 pipeline {
-  environment {
-  	DOCKERHUB_CREDENTIALS=credentials('Docker-user')
-  }
-  stages {
 	node('jenkins-slave') {
-    stage('Maven build and package') {
-      steps {
-        
-        	sh 'mvn clean package -DskipTests'
-        	sh 'pwd'
-      }
-    }
-    stage('Docker'){
-      steps {
-  			script{
-  				sh 'docker version'
-	  			//docker.build("pontalti/fiscalcode:latest")
-  			}
-      }
-    }
-    }
-  }
+	    
+	     stage('unit-tests') {
+	        sh(script: """
+	            docker run --rm alpine /bin/sh -c "echo hello world"
+	        """)
+	    }
+	}
 }
