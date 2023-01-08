@@ -11,8 +11,8 @@ pipeline {
             command:
             - cat
             tty: true
-          - name: docker
-            image: pontalti/docker:latest
+          - name: docker-client
+            image: pontalti/docker-client:latest
             command:
             - cat
             tty: true
@@ -30,7 +30,7 @@ pipeline {
     }
     stage('docker'){
       steps{
-        container('docker'){
+        container('docker-client'){
           sh 'docker version'
         }
       }
