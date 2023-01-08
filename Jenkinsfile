@@ -1,6 +1,4 @@
 pipeline {
-  agent any
-  /*
   agent {
     kubernetes {
       yaml '''
@@ -9,36 +7,20 @@ pipeline {
         spec:
           containers:
           - name: devops
-            image: pontalti/devops:0.1
+            image: maven:3.8.4-openjdk-17-slim
             command:
             - cat
             tty: true
         '''
     }
-  }*/
+  }
   stages {
     stage('Maven build and package') {
       steps {
-        //container('devops') {
-        	//sh 'mvn clean package -DskipTests'
+        container('devops') {
+        	sh 'mvn clean package -DskipTests'
         	sh 'pwd'
-        //}
-      }
-    }
-    stage('Docker'){
-      steps {
-      	//container('devops') {
-			script{
-				sh 'docker version'
-				/**
-	  			dockerImage = docker.build imageName
-				docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
-	        		dockerImage.push("$BUILD_NUMBER")
-	         		dockerImage.push('latest')
-	      		}
-	      		*/
-      		}
-		//}
+        }
       }
     }
   }
