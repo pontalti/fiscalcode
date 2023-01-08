@@ -11,6 +11,11 @@ pipeline {
             command:
             - cat
             tty: true
+          - name: docker
+            image: pontalti/docker:latest
+            command:
+            - cat
+            tty: true
         '''
     }
   }
@@ -20,6 +25,13 @@ pipeline {
         container('devops') {
         	sh 'mvn clean package -DskipTests'
         	sh 'pwd'
+        }
+      }
+    }
+    stage('docker'){
+      steps{
+        container('docker'){
+          sh 'docker version'
         }
       }
     }
