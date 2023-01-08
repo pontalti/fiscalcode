@@ -7,7 +7,7 @@ pipeline {
         spec:
           containers:
           - name: devops
-            image: maven:3.8.4-openjdk-17-slim
+            image: pontalti/devops:0.1
             command:
             - cat
             tty: true
