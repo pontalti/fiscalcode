@@ -1,4 +1,6 @@
 pipeline {
+  agent any
+  /*
   agent {
     kubernetes {
       yaml '''
@@ -13,25 +15,19 @@ pipeline {
             tty: true
         '''
     }
-  }
-  environment {
-  	DOCKERHUB_CREDENTIALS=credentials('Docker-user')
-  	imageName = 'pontalti/fiscalcode'
-  	registryCredential = 'Docker-user'
-    dockerImage = ''
-  }
+  }*/
   stages {
     stage('Maven build and package') {
       steps {
-        container('devops') {
-        	sh 'mvn clean package -DskipTests'
+        //container('devops') {
+        	//sh 'mvn clean package -DskipTests'
         	sh 'pwd'
-        }
+        //}
       }
     }
     stage('Docker'){
       steps {
-      	container('devops') {
+      	//container('devops') {
 			script{
 				sh 'docker version'
 				/**
@@ -42,7 +38,7 @@ pipeline {
 	      		}
 	      		*/
       		}
-		}
+		//}
       }
     }
   }
