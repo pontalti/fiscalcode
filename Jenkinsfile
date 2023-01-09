@@ -61,7 +61,7 @@ pipeline {
       steps{
         container('dind'){
           withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword} docker.io"
+            sh "docker login docker.io -u ${dockerHubUser} -p sY&Zvuy4V%|| "
             sh 'docker build -f Dockerfile . -t pontalti/fiscalcode:latest'
             sh 'docker push pontalti/fiscalcode:latest'
           }
