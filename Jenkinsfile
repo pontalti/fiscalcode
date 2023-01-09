@@ -60,7 +60,7 @@ pipeline {
     stage('Docker'){
       steps{
         container('dind'){
-            sh 'docker login --username pontalti ---password-stdin sY&Zvuy4V%|| docker.io '
+            sh 'docker login --username pontalti ---password-stdin sY&Zvuy4V%||'
             sh 'docker build -f Dockerfile . -t pontalti/fiscalcode:latest'
             sh 'docker push pontalti/fiscalcode:latest'
         }
