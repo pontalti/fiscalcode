@@ -11,11 +11,15 @@ pipeline {
             command:
             - cat
             tty: true
+            securityContext:
+              privilege: true
           - name: docker
-            image: pontalti/docker:latest
+            image: docker:20.10.22-dind-alpine3.17
             command:
             - cat
             tty: true
+            securityContext:
+              privilege: true
         '''
     }
   }
