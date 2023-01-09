@@ -32,42 +32,35 @@ pipeline {
               emptyDir: {}
         '''
     }
-/**
-
-containers:
-  - name: my-main-container
-    # ...
-    # other container config here
-    # ...
-    env:
-    - name: DOCKER_HOST
-      value: tcp://localhost:2375
-  - name: dind
-    image: docker:18.05-dind
-    securityContext:
-      privileged: true
-    volumeMounts:
-      - name: dind-storage
-        mountPath: /var/lib/docker
-volumes:
-  - name: dind-storage
-    emptyDir: {}
-
-*/
-
   }
   stages {
-    /*
-    stage('Maven build and package') {
-      steps {
-        container('devops') {
+    stage('Maven compile'){
+      steps{
+        container('devops'){
           script{
-            sh 'mvn clean package -DskipTests'
+            sh 'mvn compile'
           }
         }
       }
     }
-    */
+    stage('Maven Junit'){
+      steps{
+        container('devops'){
+          script{
+            sh 'mvn compile test'
+          }
+        }
+      }
+    }
+    stage('Maven build and package') {
+      steps {
+        container('devops') {
+          script{
+            sh 'mvn clean compile package -DskipTests'
+          }
+        }
+      }
+    }
     stage('Docker'){
       steps{
         container('dind'){
