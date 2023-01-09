@@ -59,7 +59,6 @@ pipeline {
         container('dind'){
           script{
             withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-              sh 'docker status'
               sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
               sh 'docker build -f dockerfile . -t pontalti/fiscalcode:latest'
               sh 'docker push pontalti/fiscalcode:latest '
