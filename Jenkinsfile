@@ -30,7 +30,7 @@ pipeline {
       }
     }
 */
-    stage('docker'){
+    stage('docker-client'){
       steps{
         container('docker-client'){
           sh 'docker version'
