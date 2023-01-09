@@ -25,16 +25,15 @@ pipeline {
         container('devops') {
           script{
             sh 'mvn clean package -DskipTests'
-            sh 'pwd'
           }
         }
       }
     }
-    stage('docker'){
+    stage('devops'){
       steps{
         container('docker'){
           script{
-            sh 'docker version'
+            sh 'pwd'
           }
         }
       }
