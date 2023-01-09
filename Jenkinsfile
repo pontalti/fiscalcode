@@ -29,9 +29,9 @@ pipeline {
         }
       }
     }
-    stage('devops'){
+    stage('Docker'){
       steps{
-        container('docker'){
+        container('devops'){
           script{
             sh 'pwd'
           }
