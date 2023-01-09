@@ -12,7 +12,7 @@ pipeline {
             - cat
             tty: true
           - name: docker-client
-            image: pontalti/docker:latest
+            image: pontalti/docker-client:latest
             command:
             - cat
             tty: true
@@ -20,7 +20,6 @@ pipeline {
     }
   }
   stages {
-/**
     stage('Maven build and package') {
       steps {
         container('devops') {
@@ -29,10 +28,9 @@ pipeline {
         }
       }
     }
-*/
-    stage('docker-client'){
+    stage('docker'){
       steps{
-        container('docker-client'){
+        container('docker'){
           sh 'docker version'
         }
       }
