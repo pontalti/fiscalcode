@@ -46,7 +46,7 @@ pipeline {
         }
       }
     }
-
+*/ 
     stage('Maven build and package') {
       steps {
         container('devops') {
@@ -56,16 +56,14 @@ pipeline {
         }
       }
     }
-    */    
+       
     stage('Docker'){
       steps{
         container('dind'){
           withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh 'docker login -u pontalti -p sY&Zvuy4V%||'
-            //sh 'docker build -f Dockerfile . -t pontalti/fiscalcode:latest'
-            //sh 'docker tag fiscalcode pontalti/fiscalcode:latest'
+            sh 'docker build -f Dockerfile . -t pontalti/fiscalcode:latest'
+            sh 'docker tag fiscalcode pontalti/fiscalcode:latest'
             sh 'docker push pontalti/fiscalcode:latest'
-            sh 'docker logout'
           }
         }
       }
