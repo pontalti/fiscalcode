@@ -18,11 +18,13 @@ pipeline {
             securityContext:
               privileged: true
             volumeMounts:
-              - name: dind-storage
-                mountPath: /var/lib/docker
+              - mountPath: /var/run/docker.sock
+                name: docker-socket-volume
           volumes:
-            - name: dind-storage
-              emptyDir: {}
+            - name: docker-socket-volume
+              hostPath:
+                path: /var/run/docker.sock
+                type: File
         '''
     }
   }
