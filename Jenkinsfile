@@ -20,6 +20,7 @@ pipeline {
     }
   }
   stages {
+/**
     stage('Maven build and package') {
       steps {
         container('devops') {
@@ -28,6 +29,7 @@ pipeline {
         }
       }
     }
+*/
     stage('docker'){
       steps{
         container('docker-client'){
