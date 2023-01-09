@@ -12,7 +12,7 @@ pipeline {
             - cat
             tty: true
           - name: docker-client
-            image: pontalti/docker-client:latest
+            image: pontalti/docker:latest
             command:
             - cat
             tty: true
