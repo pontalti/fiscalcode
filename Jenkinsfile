@@ -70,9 +70,10 @@ volumes:
     */
     stage('Docker'){
       steps{
-        container('docker'){
+        container('dind'){
           script{
             sh 'pwd'
+            sh 'docker version'
           }
         }
       }
