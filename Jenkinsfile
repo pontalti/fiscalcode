@@ -61,10 +61,10 @@ pipeline {
       steps{
         container('dind'){
           withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            //sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+            sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
             sh 'docker build -f Dockerfile . -t pontalti/fiscalcode:latest'
+            sh 'docker tag fiscalcode pontalti/fiscalcode:latest'
             sh 'docker push pontalti/fiscalcode:latest'
-            sh 'docker logout'
           }
         }
       }
