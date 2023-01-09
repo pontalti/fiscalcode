@@ -13,13 +13,6 @@ pipeline {
             tty: true
             securityContext:
               privilege: true
-          - name: docker
-            image: docker:20.10.22-dind-alpine3.17
-            command:
-            - cat
-            tty: true
-            securityContext:
-              privilege: true
           - name: dind
             image: docker:18.05-dind
             securityContext:
