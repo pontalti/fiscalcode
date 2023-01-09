@@ -14,7 +14,7 @@ pipeline {
             securityContext:
               privilege: true
           - name: dind
-            image: docker:18.05-dind
+            image: docker:dind
             securityContext:
               privileged: true
             volumeMounts:
@@ -54,15 +54,16 @@ pipeline {
           }
         }
       }
-    }
+    }       
 */ 
-       
     stage('Docker'){
       steps{
         container('dind'){
-            sh 'docker login --username pontalti ---password-stdin sY&Zvuy4V%||'
+          withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
             sh 'docker build -f Dockerfile . -t pontalti/fiscalcode:latest'
             sh 'docker push pontalti/fiscalcode:latest'
+          }
         }
       }
     }
