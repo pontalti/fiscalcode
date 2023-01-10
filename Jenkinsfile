@@ -48,6 +48,7 @@ pipeline {
         }
       }
     }
+*/ 
     stage('Maven build and package') {
       steps {
         container('devops') {
@@ -57,7 +58,7 @@ pipeline {
         }
       }
     }       
-*/ 
+
     stage('Docker'){
       steps{
         container('dind'){
