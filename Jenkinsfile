@@ -53,7 +53,8 @@ pipeline {
           }
         }
       }
-    }       
+    } 
+    /*      
     stage('Docker'){
       steps{
         container('dind'){
@@ -64,6 +65,6 @@ pipeline {
           }
         }
       }
-    }
+    }*/
   }
 }
