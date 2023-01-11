@@ -7,13 +7,24 @@ pipeline {
         spec:
           containers:
           - name: devops
-            image: maven:3.8.4-openjdk-17-slim
+            image: pontalti/devops:0.1
             command:
             - cat
             tty: true
             securityContext:
               privilege: true
-
+          - name: dind
+            image: docker:dind
+            securityContext:
+              privileged: true
+            volumeMounts:
+              - mountPath: /var/run/docker.sock
+                name: docker-socket-volume
+          volumes:
+            - name: docker-socket-volume
+              hostPath:
+                path: /var/run/docker.sock
+                type: File
         '''
     }
   }
@@ -44,18 +55,17 @@ pipeline {
           }
         }
       }
-    } 
-    /*      
+    }       
     stage('Docker'){
       steps{
         container('dind'){
           withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            //sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
+            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
             sh 'docker build -f Dockerfile . -t pontalti/fiscalcode:latest'
             sh 'docker push pontalti/fiscalcode:latest'
           }
         }
       }
-    }*/
+    }
   }
 }
