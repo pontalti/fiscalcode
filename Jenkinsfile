@@ -14,17 +14,15 @@ pipeline {
             securityContext:
               privilege: true
           - name: dind
-            image: docker:dind
+            image: docker:18.05-dind
             securityContext:
               privileged: true
             volumeMounts:
-              - mountPath: /var/run/docker.sock
-                name: docker-socket-volume
+              - name: dind-storage
+                mountPath: /var/lib/docker
           volumes:
-            - name: docker-socket-volume
-              hostPath:
-                path: /var/run/docker.sock
-                type: File
+            - name: dind-storage
+              emptyDir: {}
         '''
     }
   }
@@ -60,7 +58,7 @@ pipeline {
       steps{
         container('dind'){
           withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
+            //sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
             sh 'docker build -f Dockerfile . -t pontalti/fiscalcode:latest'
             sh 'docker push pontalti/fiscalcode:latest'
           }
