@@ -21,7 +21,7 @@ spec:
     command:
     - cat
     tty: true
-  - name: jenkins_slave
+  - name: jenkins-slave
     image: aimvector/jenkins-slave
     tty: true
     securityContext:
@@ -44,7 +44,7 @@ spec:
 
     stage('Docker: Building image'){
       steps{
-        container('jenkins_slave'){
+        container('jenkins-slave'){
           sh(script: """
             docker run --rm alpine /bin/sh -c "echo hello world"
           """)
