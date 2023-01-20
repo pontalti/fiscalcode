@@ -20,7 +20,7 @@ spec:
         container('dind'){
           script{
             withCredentials([usernamePassword(credentialsId: 'Docker-user', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-              sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
+              //sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
               sh 'docker version'
             }
           }
