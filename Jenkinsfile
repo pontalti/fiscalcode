@@ -25,6 +25,17 @@ spec:
     }
   }
   stages {
+
+    stage('maven: Build'){
+      steps{
+        container('devops'){
+          script{
+            sh 'mvn clean compile package -DskipTests'
+          }
+        }
+      }
+    }
+
     stage('Docker: Building image'){
       steps{
         container('devops'){
@@ -35,6 +46,7 @@ spec:
         }
       }
     }
+
     stage('Docker: Deploy image') {
       steps {
         container('devops'){
@@ -46,6 +58,7 @@ spec:
           }
         }
       }
-    } 
+    }
+
   }
 }
