@@ -16,11 +16,9 @@ spec:
     command:
     - cat
     tty: true
-  - name: dind
-    image: docker:dind
+  - name: alpine
+    image: alpine:latest
     tty: true
-    securityContext:
-      privileged: true
 '''
     }
   }
@@ -38,9 +36,8 @@ spec:
 
     stage('Docker: Building image'){
       steps{
-        container('devops'){
+        container('alpine'){
           script{
-            sh 'echo "Buildingggggg" '
             dockerImage = docker.build registry + ":$BUILD_NUMBER"
           }
         }
@@ -49,9 +46,8 @@ spec:
 
     stage('Docker: Deploy image') {
       steps {
-        container('devops'){
+        container('alpine'){
           script {
-            sh 'echo "deployyyyyyyy" '
             docker.withRegistry( '', registryCredential ) { 
                 dockerImage.push() 
             }
