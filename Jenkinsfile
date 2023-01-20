@@ -15,10 +15,13 @@ spec:
     }
   }
   stages {
-    stage('Maven compile'){
+    stage('Docker stage'){
       steps{
         container('dind'){
+          withCredentials([usernamePassword(credentialsId: 'Docker-user', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
             sh 'docker version'
+          }
         }
       }
     }
