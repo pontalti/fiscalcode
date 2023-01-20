@@ -6,11 +6,6 @@ apiVersion: v1
 kind: Pod
 spec:
   containers:
-  #- name: devops
-  #  image: pontalti/devops:0.1
-  #  command:
-  #  - cat
-  #  tty: true
   - name: dind
     image: docker:dind
     tty: true
