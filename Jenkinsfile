@@ -13,6 +13,7 @@ spec:
   #  tty: true
   - name: dind
     image: docker:dind
+    tty: true
     securityContext:
       privileged: true
     volumeMounts:
