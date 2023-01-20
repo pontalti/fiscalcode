@@ -23,7 +23,7 @@ spec:
     }
   }
   stages {
-
+/*
     stage('maven: Build'){
       steps{
         container('devops'){
@@ -33,7 +33,7 @@ spec:
         }
       }
     }
-
+*/
     stage('Docker: Building image'){
       steps{
         container('alpine'){
