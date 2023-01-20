@@ -1,4 +1,9 @@
 pipeline {
+  environment { 
+    registry = "pontalti/fiscalcode" 
+    registryCredential = 'Docker-user' 
+    dockerImage = '' 
+  }
   agent {
     kubernetes {
       yaml '''
@@ -15,17 +20,26 @@ spec:
     }
   }
   stages {
-    stage('Docker stage'){
+    stage('Docker: Building image'){
+    agent any
       steps{
-        container('dind'){
-          script{
-            withCredentials([usernamePassword(credentialsId: 'Docker-user', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-              //sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-              sh 'docker version'
-            }
-          }
-        }
+        script{
+          sh 'echo "Buildingggggg" '
+          //dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }        
       }
     }
+    stage('Docker: Deploy image') {
+      agent any 
+      steps { 
+        script {
+          sh 'echo "deployyyyyyyy" '
+          /* 
+          docker.withRegistry( '', registryCredential ) { 
+              dockerImage.push() 
+          }*/
+        } 
+      }
+    } 
   }
 }
