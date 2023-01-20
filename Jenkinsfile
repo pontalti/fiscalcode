@@ -21,24 +21,26 @@ spec:
   }
   stages {
     stage('Docker: Building image'){
-    agent any
       steps{
-        script{
-          sh 'echo "Buildingggggg" '
-          //dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }        
+        container('dind'){
+          script{
+            sh 'echo "Buildingggggg" '
+            //dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          }
+        }
       }
     }
     stage('Docker: Deploy image') {
-      agent any 
-      steps { 
-        script {
-          sh 'echo "deployyyyyyyy" '
-          /* 
-          docker.withRegistry( '', registryCredential ) { 
-              dockerImage.push() 
-          }*/
-        } 
+      steps {
+        container('dind'){
+          script {
+            sh 'echo "deployyyyyyyy" '
+            /* 
+            docker.withRegistry( '', registryCredential ) { 
+                dockerImage.push() 
+            }*/
+          }
+        }
       }
     } 
   }
