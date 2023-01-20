@@ -11,14 +11,6 @@ spec:
     tty: true
     securityContext:
       privileged: true
-    volumeMounts:
-      - mountPath: /var/run/docker.sock
-        name: docker-socket-volume
-  volumes:
-    - name: docker-socket-volume
-      hostPath:
-        path: /var/run/docker.sock
-        type: File
 '''
     }
   }
