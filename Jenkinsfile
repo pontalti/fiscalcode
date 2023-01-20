@@ -22,7 +22,7 @@ spec:
     - cat
     tty: true
   - name: docker
-    image: aimvector/jenkins-slave
+    image: docker:dind
     tty: true
     securityContext:
       privileged: true
