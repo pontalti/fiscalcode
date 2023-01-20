@@ -10,15 +10,22 @@ pipeline {
 apiVersion: v1
 kind: Pod
 spec:
+  volumes:
+    - name: docker-pv-storage
+      hostPath:
+        path: /var/run/docker.sock
+        type: Directory
   containers:
   - name: devops
     image: pontalti/devops:0.1
     command:
     - cat
     tty: true
-  - name: alpine
-    image: alpine:latest
+  - name: jenkins_slave
+    image: aimvector/jenkins-slave
     tty: true
+    securityContext:
+      privileged: true
 '''
     }
   }
@@ -34,6 +41,18 @@ spec:
       }
     }
 */
+
+    stage('Docker: Building image'){
+      steps{
+        container('jenkins_slave'){
+          sh(script: """
+            docker run --rm alpine /bin/sh -c "echo hello world"
+          """)
+        }
+      }
+    }
+
+/*
     stage('Docker: Building image'){
       steps{
         container('alpine'){
@@ -55,6 +74,6 @@ spec:
         }
       }
     }
-
+*/
   }
 }
