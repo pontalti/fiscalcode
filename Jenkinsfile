@@ -10,11 +10,11 @@ pipeline {
 apiVersion: v1
 kind: Pod
 spec:
-  volumes:
-    - name: docker-pv-storage
-      hostPath:
-        path: /var/run/docker.sock
-        type: Directory
+  #volumes:
+  #  - name: docker-pv-storage
+  #    hostPath:
+  #      path: /var/run/docker.sock
+  #      type: Directory
   containers:
   - name: devops
     image: pontalti/devops:0.1
@@ -26,9 +26,9 @@ spec:
     tty: true
     securityContext:
       privileged: true
-    volumeMounts:
-    - mountPath: /var/run/docker.sock
-      name: docker-pv-storage
+    #volumeMounts:
+    #- mountPath: /var/run/docker.sock
+    #  name: docker-pv-storage
 '''
     }
   }
