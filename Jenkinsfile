@@ -14,7 +14,7 @@ spec:
     - name: tipc-vol
       hostPath:
         path: /var/run/docker.sock
-        readOnly: true
+        #readOnly: true
   containers:
   - name: devops
     image: pontalti/devops:0.1
