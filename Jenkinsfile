@@ -14,7 +14,7 @@ spec:
     - name: tipc-vol
       hostPath:
         path: /var/run/docker.sock
-        #readOnly: true
+        readOnly: true
   containers:
   - name: devops
     image: pontalti/devops:0.1
@@ -33,7 +33,7 @@ spec:
     }
   }
   stages {
-/*
+
     stage('maven: Build'){
       steps{
         container('devops'){
@@ -45,7 +45,7 @@ spec:
         }
       }
     }
-*/
+
     stage('Docker: Building image'){
       steps{
         container('docker'){
