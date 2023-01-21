@@ -1,83 +1,50 @@
 pipeline {
-  environment { 
-    registry = "pontalti/fiscalcode" 
-    registryCredential = 'Docker-user' 
-    dockerImage = '' 
-  }
   agent {
     kubernetes {
       yaml '''
-apiVersion: v1
-kind: Pod
-spec:
-  volumes:
-    - name: tipc-vol
-      hostPath:
-        path: /var/run/docker.sock
-        readOnly: true
-  containers:
-  - name: devops
-    image: pontalti/devops:0.1
-    command:
-    - cat
-    tty: true
-  - name: docker
-    image: docker:dind
-    tty: true
-    securityContext:
-      privileged: true
-    #volumeMounts:
-    #- mountPath: /var/run/docker.sock
-    #  name: tipc-vol
-'''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: devops
+            image: pontalti/devops:0.1
+            command:
+            - cat
+            tty: true
+        '''
     }
   }
   stages {
 
-    stage('maven: Build'){
+    stage('Maven compile'){
       steps{
         container('devops'){
           script{
-            sh(script: """
-                mvn clean compile package -DskipTests
-            """)
+            sh 'mvn compile'
           }
         }
       }
     }
-/*
-    stage('Docker: Building image'){
-      steps{
-        container('docker'){
-          sh(script: """
-            docker run --rm alpine /bin/sh -c "echo hello world"
-          """)
-        }
-      }
-    }
 
-
-    stage('Docker: Building image'){
+    stage('Maven Junit'){
       steps{
-        container('alpine'){
+        container('devops'){
           script{
-            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            sh 'mvn test'
           }
         }
       }
     }
 
-    stage('Docker: Deploy image') {
+    stage('Maven build and package') {
       steps {
-        container('alpine'){
-          script {
-            docker.withRegistry( '', registryCredential ) { 
-                dockerImage.push() 
-            }
+        container('devops') {
+          script{
+            sh 'mvn clean package -DskipTests'
           }
         }
       }
     }
-*/
+
   }
 }

@@ -11,22 +11,19 @@ pipeline {
             command:
             - cat
             tty: true
-          - name: dind
-            image: docker:dind
-            securityContext:
-              privileged: true
-            volumeMounts:
-              - mountPath: /var/run/docker.sock
-                name: docker-socket-volume
-          volumes:
-            - name: docker-socket-volume
-              hostPath:
-                path: /var/run/docker.sock
-                type: File
         '''
     }
   }
   stages {
+
+    stage('Checkout'){
+      steps{
+        container('devops'){
+          git branch: 'main', poll: false, url: 'https://github.com/pontalti/fiscalcode.git'
+        }
+      }
+    }
+
     stage('Maven compile'){
       steps{
         container('devops'){
@@ -40,7 +37,7 @@ pipeline {
       steps{
         container('devops'){
           script{
-            sh 'mvn compile test'
+            sh 'mvn test'
           }
         }
       }
@@ -49,11 +46,12 @@ pipeline {
       steps {
         container('devops') {
           script{
-            sh 'mvn clean compile package -DskipTests'
+            sh 'mvn clean package -DskipTests'
           }
         }
       }
     }       
+    /*
     stage('Docker'){
       steps{
         container('dind'){
@@ -65,5 +63,6 @@ pipeline {
         }
       }
     }
+    */
   }
 }
