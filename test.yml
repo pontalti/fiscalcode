@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+spec:
+  volumes:
+    - name: tipc-vol
+      hostPath:
+        path: /var/run/docker.sock
+        readOnly: false
+  containers:
+  - name: devops
+    image: pontalti/devops:0.1
+    command:
+    - cat
+    tty: true
+  - name: docker
+    image: docker:dind
+    tty: true
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - mountPath: /var/run/docker.sock
+      name: tipc-vol
