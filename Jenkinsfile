@@ -10,25 +10,24 @@ pipeline {
 apiVersion: v1
 kind: Pod
 spec:
-  #volumes:
-  #  - name: docker-pv-storage
-  #    hostPath:
-  #      path: /var/run/docker.sock
-  #      type: Directory
+  volumes:
+    - name: docker-pv-storage
+      hostPath:
+        path: /var/run/docker.sock
   containers:
   - name: devops
     image: pontalti/devops:0.1
     command:
     - cat
     tty: true
-  #- name: docker
-  #  image: docker:dind
-  #  tty: true
-  #  securityContext:
-  #    privileged: true
-  #  #volumeMounts:
-  #  #- mountPath: /var/run/docker.sock
-  #  #  name: docker-pv-storage
+  - name: docker
+    image: docker:dind
+    tty: true
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - mountPath: /var/run/docker.sock
+      name: docker-pv-storage
 '''
     }
   }
@@ -47,7 +46,7 @@ spec:
 
     stage('Docker: Building image'){
       steps{
-        container('slave'){
+        container('docker'){
           sh(script: """
             docker run --rm alpine /bin/sh -c "echo hello world"
           """)
