@@ -14,7 +14,7 @@ spec:
     - name: tipc-vol
       hostPath:
         path: /var/run/docker.sock
-        readOnly: false
+        readOnly: true
   containers:
   - name: devops
     image: pontalti/devops:0.1
@@ -38,13 +38,14 @@ spec:
       steps{
         container('devops'){
           script{
-            sh 'mvn clean compile package -DskipTests'
+            sh(script: """
+                mvn clean compile package -DskipTests
+            """)
           }
         }
       }
     }
 */
-
     stage('Docker: Building image'){
       steps{
         container('docker'){
