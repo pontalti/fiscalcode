@@ -21,14 +21,14 @@ spec:
     command:
     - cat
     tty: true
-  - name: docker
-    image: docker:dind
-    tty: true
-    securityContext:
-      privileged: true
-    #volumeMounts:
-    #- mountPath: /var/run/docker.sock
-    #  name: docker-pv-storage
+  #- name: docker
+  #  image: docker:dind
+  #  tty: true
+  #  securityContext:
+  #    privileged: true
+  #  #volumeMounts:
+  #  #- mountPath: /var/run/docker.sock
+  #  #  name: docker-pv-storage
 '''
     }
   }
@@ -44,16 +44,15 @@ spec:
       }
     }
 */
-
+  node('slave') {
     stage('Docker: Building image'){
       steps{
-        container('docker'){
           sh(script: """
             docker run --rm alpine /bin/sh -c "echo hello world"
           """)
-        }
       }
     }
+  }
 
 /*
     stage('Docker: Building image'){
