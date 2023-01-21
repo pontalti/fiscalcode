@@ -26,9 +26,9 @@ spec:
     tty: true
     securityContext:
       privileged: true
-    volumeMounts:
-    - mountPath: /var/run/docker.sock
-      name: tipc-vol
+    #volumeMounts:
+    #- mountPath: /var/run/docker.sock
+    #  name: tipc-vol
 '''
     }
   }
@@ -45,7 +45,7 @@ spec:
         }
       }
     }
-
+/*
     stage('Docker: Building image'){
       steps{
         container('docker'){
@@ -56,7 +56,7 @@ spec:
       }
     }
 
-/*
+
     stage('Docker: Building image'){
       steps{
         container('alpine'){
