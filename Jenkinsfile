@@ -11,9 +11,10 @@ apiVersion: v1
 kind: Pod
 spec:
   volumes:
-    - name: docker-pv-storage
+    - name: tipc-vol
       hostPath:
         path: /var/run/docker.sock
+        readOnly: true
   containers:
   - name: devops
     image: pontalti/devops:0.1
@@ -27,7 +28,7 @@ spec:
       privileged: true
     volumeMounts:
     - mountPath: /var/run/docker.sock
-      name: docker-pv-storage
+      name: tipc-vol
 '''
     }
   }
