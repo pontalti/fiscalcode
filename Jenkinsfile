@@ -44,15 +44,17 @@ spec:
       }
     }
 */
-  node('slave') {
+  
     stage('Docker: Building image'){
-      steps{
-          sh(script: """
-            docker run --rm alpine /bin/sh -c "echo hello world"
-          """)
+      node('slave') {
+        steps{
+            sh(script: """
+              docker run --rm alpine /bin/sh -c "echo hello world"
+            """)
+        }
       }
     }
-  }
+  
 
 /*
     stage('Docker: Building image'){
