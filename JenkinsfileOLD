@@ -7,7 +7,7 @@ pipeline {
         spec:
           containers:
           - name: devops
-            image: pontalti/devops:0.1
+            image: pontalti/devops:0.2
             command:
             - cat
             tty: true
