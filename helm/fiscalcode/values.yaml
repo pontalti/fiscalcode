@@ -1,0 +1,34 @@
+# Default values for fiscalcode.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 3
+
+image:
+  repository: "pontalti"
+  image: "fiscalcode"
+  tag: "latest"
+
+containerPort: 8080
+
+resources:
+  limits:
+    memory: "1Gi"
+    cpu: "1000m"
+  requests:
+    memory: "500Mi"
+    cpu: "500m"
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30000
+
+hpa:
+  type: Resource
+  name: cpu
+  minReplicas: 3
+  maxReplicas: 5
+  target:
+      type: Utilization
+      averageUtilization: 50

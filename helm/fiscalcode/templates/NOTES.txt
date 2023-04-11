@@ -1,0 +1,5 @@
+Thank you for install {{ .Chart.Name }} - v{{ .Chart.AppVersion }} :
+Your release name is {{ .Release.Name }}
+For more info, execute: 
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
