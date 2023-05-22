@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.5</version>
+		<version>3.1.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	
@@ -15,6 +15,7 @@
 	<version>0.0.1</version>
 	<name>fiscalcode</name>
 	<description>Italian fiscal code generator</description>
+	<packaging>jar</packaging>
 	
 	<scm>
 		<connection>scm:git:https://github.com/pontalti/fiscalcode.git</connection>
@@ -28,6 +29,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<junit.version>4.13.2</junit.version>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+		<start-class>com.FiscalCodeApplication</start-class>
 	</properties>
 	
 	<dependencies>
@@ -138,6 +140,7 @@
 	</dependencies>
 	
 	<build>
+		<finalName>${project.name}</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -145,13 +148,15 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<configuration>
 						<excludeDevtools>false</excludeDevtools>
+						<mainClass>com.FiscalCodeApplication</mainClass>
+            			<layout>JAR</layout>
 					</configuration>
 					<executions>
-						<execution>
-							<goals>
-								<goal>repackage</goal>
-							</goals>
-						</execution>
+					    <execution>
+					        <goals>
+					            <goal>repackage</goal>
+					        </goals>
+					    </execution>
 					</executions>
 				</plugin>
 				<plugin>
