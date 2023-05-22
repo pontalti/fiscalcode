@@ -65,7 +65,7 @@
 11. To build please.
 	- Go to the project root folder.
 	- Run the command below.
-		- ``` mvn clean install package -U ```
+		- ``` mvn -U clean install package spring-boot:repackage ```
 
 12. To run the SpringBoot application in localhost.
 	- Go to the project root folder.
