@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 
 import com.dto.ClientDTO;
 import com.dto.Gender;
-import com.entity.City;
-import com.repository.CityRepository;
+import com.entity.Italy;
+import com.repository.ItalyRepository;
 import com.util.Util;
 
 @Service
 public class FiscalCodeExtractorServiceImpl implements FiscalCodeExtractorService{
 
 	@Autowired
-	private CityRepository cityRepository;
+	private ItalyRepository repository;
 	
 	public FiscalCodeExtractorServiceImpl() {
 		super();
@@ -41,7 +41,7 @@ public class FiscalCodeExtractorServiceImpl implements FiscalCodeExtractorServic
 		String birthDate = Util.convertLocaldateToFormatedDate(date);
 		String cityCode = fiscalCode.substring(11, 15);
 		
-		Optional<City> city = this.cityRepository.findByCode(cityCode);
+		Optional<Italy> city = this.repository.findByCode(cityCode);
 		ClientDTO dto = null;
 		if(city.isPresent()) {
 			dto = ClientDTO
@@ -51,7 +51,7 @@ public class FiscalCodeExtractorServiceImpl implements FiscalCodeExtractorServic
 						.dateOfBirth(birthDate)
 						.gender(Gender.valueOf(String.valueOf(sex)))
 						.state(city.get().getProv())
-						.placeOfBirth(city.get().getName())
+						.placeOfBirth(city.get().getCityName())
 						.build();
 		}else {
 			dto = ClientDTO

@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dto.TaxCodeDTO;
-import com.entity.City;
+import com.entity.Italy;
 import com.exception.NotSuchCityException;
-import com.repository.CityRepository;
+import com.repository.ItalyRepository;
 
 @Service
 public class FiscalCodeCalculatorServiceImpl implements FiscalCodeCalculatorService{
 
 	@Autowired
-	private CityRepository cityRepository;
+	private ItalyRepository repository;
 	
 	public FiscalCodeCalculatorServiceImpl() {
 		super();
@@ -23,7 +23,7 @@ public class FiscalCodeCalculatorServiceImpl implements FiscalCodeCalculatorServ
 	
 	@Override
 	public TaxCodeDTO calculateFC(String name, String surname, char sex, LocalDate dob, String placeOfBirth, String state) throws NotSuchCityException {
-		Optional<City> city = this.cityRepository.findByName(placeOfBirth, state);
+		Optional<Italy> city = this.repository.findByCityName(placeOfBirth, state);
 		if ( city.isEmpty()) {
 			throw new NotSuchCityException();
 		} else {

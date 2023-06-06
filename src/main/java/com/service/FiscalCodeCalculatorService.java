@@ -3,7 +3,7 @@ package com.service;
 import java.time.LocalDate;
 
 import com.dto.TaxCodeDTO;
-import com.entity.City;
+import com.entity.Italy;
 import com.exception.NotSuchCityException;
 import com.util.Util;
 
@@ -12,7 +12,7 @@ public interface FiscalCodeCalculatorService {
 
 	public TaxCodeDTO calculateFC(String name, String surname, char sex, LocalDate dob, String placeOfBirth, String state) throws NotSuchCityException;
 
-	static TaxCodeDTO calculateFC(String name, String surname, char sex, LocalDate dob, City city) {
+	static TaxCodeDTO calculateFC(String name, String surname, char sex, LocalDate dob, Italy city) {
 		StringBuilder fiscalCode = new StringBuilder();
 		String fcSurname = surname.replace(" ", "").toUpperCase();
 		String fcName = name.replace(" ", "").toUpperCase();
