@@ -74,7 +74,7 @@
 	- OR
 		- ``` java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000 -jar target\fiscalcode-0.0.1.jar ```
 	- To use the Spring dev tools features please configure the -> ``` Spring Boot Remote ```
-		- Remote URL -> ``` http://localhost:8080/ ```
+		- Remote URL -> ``` http://localhost:80/ ```
 		- Remote Secret -> ``` teste ```
 
 13. To run the SpringBoot application with Docker.
@@ -86,7 +86,7 @@
 	- To check the log, please run the command below.
 		- ``` docker logs -f fiscal-code ```
 	- To use the Spring dev tools features please configure the -> ``` Spring Boot Remote ```
-		- Remote URL -> ``` http://localhost:8080/ ```
+		- Remote URL -> ``` http://localhost:80/ ```
 		- Remote Secret -> ``` teste ```
 		
 14. if necessary install curl on Windows or Linux.
@@ -95,14 +95,14 @@
 	- for Linux(RHEL/CentOS/Fedora) -> ``` yum install curl ```
 	
 15. To call the services using curl please use the commands below on the Windows(CMD) orLinux(Terminal).
-	- ``` curl -i -X GET "http://localhost:8080/discoverTaxCodeDetails" -H "Content-Type: application/json" -d "{\"taxCode\":\"SZODND83A27L378E\"}" ```
-	- ``` curl -i -X GET "http://localhost:8080/discoverTaxCode" -H "Content-Type: application/json" -d "{\"name\":\"Edmundo\",\"surname\":\"Souza\",\"dateOfBirth\":\"27/01/1983\",\"placeOfBirth\":\"TRENTO\",\"gender\":\"M\", \"state\":\"TN\"}" ```
+	- ``` curl -i -X GET "http://localhost:80/discoverTaxCodeDetails" -H "Content-Type: application/json" -d "{\"taxCode\":\"SZODND83A27L378E\"}" ```
+	- ``` curl -i -X GET "http://localhost:80/discoverTaxCode" -H "Content-Type: application/json" -d "{\"name\":\"Edmundo\",\"surname\":\"Souza\",\"dateOfBirth\":\"27/01/1983\",\"placeOfBirth\":\"TRENTO\",\"gender\":\"M\", \"state\":\"TN\"}" ```
 
 16. if necessary install POSTMAN, follow the instructions in the link below.
 	- ``` https://learning.postman.com/docs/getting-started/installation-and-updates/ ```
 
 17. To run discoverTaxCode service with POSTMAN.
-	- Copy and paste the URL -> ``` http://localhost:8080/discoverTaxCode ```
+	- Copy and paste the URL -> ``` http://localhost:80/discoverTaxCode ```
 	- Open a new request and choose -> ``` GET ```
 	- Add the in the Headers section -> ``` Content-Type: application/json ```
 	- In the body section choose -> ``` RAW ```
@@ -121,7 +121,7 @@
 		
 		
 18. To run discoverTaxCodeDetails service with POSTMAN.
-	- Copy and paste the URL -> ``` http://localhost:8080/discoverTaxCodeDetails ```
+	- Copy and paste the URL -> ``` http://localhost:80/discoverTaxCodeDetails ```
 	- Open a new request and choose -> ``` GET ```
 	- Add the in the Headers section -> ``` Content-Type: application/json ```
 	- In the body section choose -> ``` RAW ```
@@ -130,6 +130,6 @@
 		- ```{"taxCode": "SZODND83A27L378E"}```
 
 19. To access the OpenAPI definition, please use the link below
-	- ``` http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/ ``` 
+	- ``` http://localhost:80/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/ ``` 
 
 
