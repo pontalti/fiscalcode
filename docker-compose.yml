@@ -2,7 +2,7 @@ version: '3'
 services:
     fiscalcode:
         build:
-            dockerfile: ./Dockerfile
+            dockerfile: ./docker/app.dockerfile
             context: .
         image: pontalti/fiscalcode
         container_name: fiscal-code

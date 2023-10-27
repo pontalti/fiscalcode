@@ -5,14 +5,14 @@
    - Eclipse IDE for Enterprise Java and Web Developers 2021-09 (4.21.0)
    		- Eclipse Plugins
    			- Spring Tools 4 for Eclipse (Spring Tool Suite 4 - 4.12.1 ) 
-   			- Java 17 support for Eclipse 2021-09 (4.21)
-   			- Project Lombok 1.18.22
-   - JDK 17.0.1
+   			- Java 21 support for Eclipse
+   			- Project Lombok
+   - JDK 21
    - Maven  3.6.3
    - git 2.34.0.windows.1
    - gh version 2.2.0
    - curl 7.55.1
-   - Postman for Windows Version 9.1.5
+   - Postman for Windows Version
    - Docker
 		- Docker for Windows (Docker version 20.10.11) 
 		- Docker Desktop for Windows 4.3.0
@@ -31,12 +31,12 @@
 5. Clone the repository
 	- ``` git clone git@github.com:pontalti/fiscalcode.git ```
 
-6. If necessary install the JDK 17, download it on the link below
+6. If necessary install the JDK 21, download it on the link below
 	- ``` https://www.oracle.com/java/technologies/downloads/ ```
 	- Choose your distribution and install the JDK
 	- Create the Java Home
-		- Windows -> ``` JAVA_HOME = [YOUR_PATCH]\jdk-17.0.1 ```
-		- Linux -> ``` JAVA_HOME = [YOUR_PATCH]/jdk-17.0.1 ```
+		- Windows -> ``` JAVA_HOME = [YOUR_PATCH]\jdk-21 ```
+		- Linux -> ``` JAVA_HOME = [YOUR_PATCH]/jdk-21 ```
 	- Put the JAVA_HOME on the System Patch
 		- For Windows -> ``` %JAVA_HOME%\bin ```
 		- For Linux -> ``` export PATH=$JAVA_HOME/bin:$PATH ```
@@ -55,7 +55,7 @@
 	- Test Maven on command line
 		- ``` mvn --version ```
 
-8. If necessary install your favorite IDE with support to JDK 17.
+8. If necessary install your favorite IDE with support to JDK 21.
 
 9. if necessary Install the project Lombok on your IDE, follow the instruction on the link below.
 	- ``` https://projectlombok.org/setup/overview ```
