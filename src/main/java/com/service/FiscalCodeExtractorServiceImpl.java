@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dto.ClientDTO;
@@ -16,11 +15,11 @@ import com.util.Util;
 @Service
 public class FiscalCodeExtractorServiceImpl implements FiscalCodeExtractorService{
 
-	@Autowired
-	private ItalyRepository repository;
+	private final ItalyRepository repository;
 	
-	public FiscalCodeExtractorServiceImpl() {
+	public FiscalCodeExtractorServiceImpl(ItalyRepository repository) {
 		super();
+		this.repository = repository;
 	}
 	
 	@Override

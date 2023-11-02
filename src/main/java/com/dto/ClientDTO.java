@@ -2,20 +2,21 @@ package com.dto;
 
 import java.io.Serializable;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.validation.EnumGenderPattern;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class ClientDTO implements Serializable{
 	
@@ -44,15 +45,5 @@ public class ClientDTO implements Serializable{
 	@NotBlank(message = "State is mandatory")
 	@NotNull(message = "State is mandatory")
 	private String state;
-	
-	public ClientDTO() {
-		super();
-		this.name 			= "";
-		this.surname 		= "";
-		this.dateOfBirth 	= "";
-		this.placeOfBirth	= "";
-		this.state			= "";
-		this.gender			= null;
-	}
 
 }

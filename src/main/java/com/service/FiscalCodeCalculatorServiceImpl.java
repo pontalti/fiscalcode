@@ -3,7 +3,6 @@ package com.service;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dto.TaxCodeDTO;
@@ -14,11 +13,11 @@ import com.repository.ItalyRepository;
 @Service
 public class FiscalCodeCalculatorServiceImpl implements FiscalCodeCalculatorService{
 
-	@Autowired
-	private ItalyRepository repository;
+	private final ItalyRepository repository;
 	
-	public FiscalCodeCalculatorServiceImpl() {
+	public FiscalCodeCalculatorServiceImpl(ItalyRepository repository) {
 		super();
+		this.repository = repository;
 	}
 	
 	@Override

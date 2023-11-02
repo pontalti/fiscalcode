@@ -42,22 +42,26 @@ public class TestFiscalCodeApplication {
 
 	@Autowired
 	private MockMvc mockMvc;
-
+	
 	@Autowired
-	private WebApplicationContext webApplicationContext;
-
+	private WebApplicationContext webAppContext;
+	
 	@Autowired
 	private ItalyRepository repository;
 	
 	@Autowired
 	private FiscalCodeExtractorService fceService;
-
+	
 	@Autowired
 	private FiscalCodeCalculatorService fccService;
 	
+	public TestFiscalCodeApplication() {
+		super();
+	}
+	
 	@Before
 	public void setUp() {
-		this.mockMvc = webAppContextSetup(webApplicationContext).build();
+		this.mockMvc = webAppContextSetup(this.webAppContext).build();
 	}
 
 	@ParameterizedTest

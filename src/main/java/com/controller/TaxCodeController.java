@@ -1,8 +1,5 @@
 package com.controller;
 
-import jakarta.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,17 +15,18 @@ import com.service.FiscalCodeCalculatorService;
 import com.service.FiscalCodeExtractorService;
 import com.util.Util;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class TaxCodeController {
 
-	@Autowired
-	private FiscalCodeCalculatorService fccService;
+	private final FiscalCodeCalculatorService fccService;
+	private final FiscalCodeExtractorService fceService;
 	
-	@Autowired
-	private FiscalCodeExtractorService fceService;
-	
-	public TaxCodeController() {
+	public TaxCodeController(FiscalCodeExtractorService fceService, FiscalCodeCalculatorService fccService) {
 		super();
+		this.fccService = fccService;
+		this.fceService = fceService;
 	}
 	
 	@GetMapping("/")
