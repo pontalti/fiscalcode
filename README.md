@@ -22,7 +22,9 @@
 	   https://git-scm.com/downloads 
 	  ```
 	- After install run the command below in the terminal
-		- ``` git config --global core.autocrlf true ```
+		- ``` 
+		   git config --global core.autocrlf true
+		  ```
 
 3. Install if necessary gh, follow the instruction on the link below.
 	- ``` https://cli.github.com/manual/installation ```
