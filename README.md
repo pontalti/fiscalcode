@@ -18,7 +18,9 @@
 		- Docker Desktop for Windows 4.3.0
 
 2. Install if necessary git, follow the instruction on the link below.
-	- ```  https://git-scm.com/downloads ```
+	- ```  
+	   https://git-scm.com/downloads 
+	  ```
 	- After install run the command below in the terminal
 		- ``` git config --global core.autocrlf true ```
 
