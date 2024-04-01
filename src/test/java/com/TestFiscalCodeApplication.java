@@ -32,7 +32,6 @@ import com.service.FiscalCodeCalculatorService;
 import com.service.FiscalCodeExtractorService;
 import com.util.Util;
 
-
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK, classes = FiscalCodeApplication.class)
 @AutoConfigureMockMvc
 public class TestFiscalCodeApplication {
@@ -191,8 +190,9 @@ public class TestFiscalCodeApplication {
 	@Tag("Important")
 	@DisplayName("Discover Tax Code Whithout Body Content Failure Test")
 	public void discoverTaxCodeWhithoutBodyContentFailureTest() throws Exception {
+		var taxCodeJson = Util.asJsonString(new TaxCodeDTO());
 		this.mockMvc.perform(get(DISCOVER_TAX_CODE_PATH)
-					.content(Util.asJsonString(new TaxCodeDTO()))
+					.content(taxCodeJson != null ? taxCodeJson : "")
 					.contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isBadRequest());
 	}
@@ -201,8 +201,9 @@ public class TestFiscalCodeApplication {
 	@Tag("Important")
 	@DisplayName("Discover Tax Code Details Whithout Body Content Failure Test")
 	public void discoverTaxCodeDetailsWhithoutBodyContentFailureTest() throws Exception {
+		var clienteJsonStr = Util.asJsonString(new ClientDTO());
 		this.mockMvc.perform(get(DISCOVER_TAX_CODE_DETAILS_PATH)
-					.content(Util.asJsonString(new ClientDTO()))
+					.content(clienteJsonStr != null ? clienteJsonStr : "")
 					.contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isBadRequest());
 	}
@@ -216,21 +217,24 @@ public class TestFiscalCodeApplication {
 											String placeOfBirth,
 											String state,
 											String gender) throws Exception {
+		
+		var clientDTO = ClientDTO.builder()
+									.name(null)
+									.surname(null)
+									.dateOfBirth(dob)
+									.gender(Gender.valueOf(String.valueOf(gender)))
+									.state(state)
+									.placeOfBirth(placeOfBirth)
+									.build();
+		
+		var clienteJsonStr = Util.asJsonString(clientDTO);
+		var taxCodeJson = Util.asJsonString(new TaxCodeDTO(taxCode));
+		
 		this.mockMvc.perform(get(DISCOVER_TAX_CODE_DETAILS_PATH)
-					.content(Util.asJsonString(new TaxCodeDTO(taxCode)))
+					.content(taxCodeJson != null ? taxCodeJson : "")
 					.contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
-					.andExpect(content()
-								.json(Util.asJsonString(
-														ClientDTO
-															.builder()
-															.name(null)
-															.surname(null)
-															.dateOfBirth(dob)
-															.gender(Gender.valueOf(String.valueOf(gender)))
-															.state(state)
-															.placeOfBirth(placeOfBirth)
-															.build())));
+					.andExpect(content().json(clienteJsonStr != null ? clienteJsonStr : ""));
 	}
 	
 	@ParameterizedTest
@@ -244,20 +248,24 @@ public class TestFiscalCodeApplication {
 									String state,
 									String gender,
 									String taxCode) throws Exception {
+
+		var clientDTO = ClientDTO.builder()
+									.name(name)
+									.surname(surname)
+									.dateOfBirth(dob)
+									.gender(Gender.valueOf(String.valueOf(gender)))
+									.state(state)
+									.placeOfBirth(placeOfBirth)
+									.build();
+		
+		var taxCodeJson = Util.asJsonString(new TaxCodeDTO(taxCode));
+		var clienteJsonStr = Util.asJsonString(clientDTO);
+		
 		this.mockMvc.perform(get(DISCOVER_TAX_CODE_PATH)
-								.content(Util.asJsonString(
-															ClientDTO
-																.builder()
-																.name(name)
-																.surname(surname)
-																.dateOfBirth(dob)
-																.gender(Gender.valueOf(String.valueOf(gender)))
-																.state(state)
-																.placeOfBirth(placeOfBirth)
-																.build()))
-								.contentType(MediaType.APPLICATION_JSON))
-								.andExpect(status().isOk())
-								.andExpect(content().json(Util.asJsonString(new TaxCodeDTO(taxCode))));
+									.content(clienteJsonStr != null ? clienteJsonStr : "")
+									.contentType(MediaType.APPLICATION_JSON))
+									.andExpect(status().isOk())
+									.andExpect(content().json(taxCodeJson != null ? taxCodeJson : ""));
 	}
 	
 }
