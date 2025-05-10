@@ -1,5 +1,7 @@
 package com.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import jakarta.validation.Valid;
 
 @RestController
 public class TaxCodeController {
+
+	private static final Logger LOG = LoggerFactory.getLogger(TaxCodeController.class);
 
 	private final FiscalCodeCalculatorService fccService;
 	private final FiscalCodeExtractorService fceService;
@@ -54,7 +58,7 @@ public class TaxCodeController {
 			response = new ResponseEntity<TaxCodeDTO>(dto, HttpStatus.OK);
 		} catch (NotSuchCityException e) {
 			response = new ResponseEntity<TaxCodeDTO>(HttpStatus.NOT_FOUND);
-			e.printStackTrace();
+			LOG.error("Error -> {}", e);
 		}
 		return response;
 	}

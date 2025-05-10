@@ -74,9 +74,9 @@
 12. To run the SpringBoot application in localhost.
 	- Go to the project root folder.
 	- Run the command below.
-		- ``` mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8080" ```
+		- ``` mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8085" ```
 	- OR
-		- ``` java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8080 -jar target\fiscalcode-0.0.1.jar ```
+		- ``` java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8085 -jar target/fiscalcode.jar ```
 	- To use the Spring dev tools features please configure the -> ``` Spring Boot Remote ```
 		- Remote URL -> ``` http://localhost:8080/ ```
 		- Remote Secret -> ``` teste ```
