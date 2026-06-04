@@ -119,8 +119,8 @@ Ensure Docker is installed and running.
 
 From the project root:
 ```bash
-docker-compose build
-docker-compose up -d
+docker compose build
+docker compose up -d
 ```
 
 Check logs:

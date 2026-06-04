@@ -8,8 +8,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 import java.util.Optional;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -58,7 +58,7 @@ public class TestFiscalCodeApplication {
 		super();
 	}
 	
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.mockMvc = webAppContextSetup(this.webAppContext).build();
 	}
