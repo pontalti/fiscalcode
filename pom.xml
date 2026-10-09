@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.5</version>
+		<version>4.2.0-M2</version>
 		<relativePath />
 	</parent>
 
@@ -19,10 +19,11 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<java.version>25</java.version>
+		<java.version>27</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<start-class>com.FiscalCodeApplication</start-class>
+		<lombok.version>1.18.48</lombok.version>
 	</properties>
 
 	<dependencies>
@@ -39,7 +40,7 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 
 		<dependency>
@@ -50,7 +51,7 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.8.6</version>
+			<version>3.1.1</version>
 		</dependency>
 
 		<dependency>
@@ -77,8 +78,15 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
+	<!-- Boot 4.2.0-M2 is available from Maven Central; milestone repo not required. -->
 	<build>
 		<finalName>fiscalcode</finalName>
 
@@ -88,6 +96,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<release>${java.version}</release>
+					<parameters>true</parameters>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
